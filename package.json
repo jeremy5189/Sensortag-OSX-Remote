@@ -1,0 +1,25 @@
+{
+  "name": "sensortag-osx-remote",
+  "version": "1.0.0",
+  "description": "Using Sensortag Simple Key as a OSX Keynote Remote",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremy5189/Sensortag-OSX-Remote.git"
+  },
+  "author": "Jeremy Yen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeremy5189/Sensortag-OSX-Remote/issues"
+  },
+  "homepage": "https://github.com/jeremy5189/Sensortag-OSX-Remote#readme",
+  "dependencies": {
+    "applescript": "^1.0.0",
+    "bplist-parser": "^0.1.1",
+    "sensortag": "^1.2.3",
+    "xpc-connection": "^0.1.4"
+  }
+}
