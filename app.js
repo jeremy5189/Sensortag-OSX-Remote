@@ -17,8 +17,28 @@ function runFile(filename) {
 	});
 }
 
+var run_cmd = function (cmd, args, callback) {
+    
+    // global.logging('cmd = ' + cmd);
+    
+    var spawn = require('child_process').spawn,
+        child = spawn(cmd, args),
+        resp = "";
+
+    child.stdout.on('data', function (buffer) { 
+        resp += buffer.toString() 
+    });
+
+    child.stdout.on('end', function() { 
+        if(callback)
+            callback(resp) 
+    });
+}
+
 // listen for tags:
 SensorTag.discover(function(tag) {
+
+	console.log('discovered ' + tag.uuid + ' ' + tag.type);
 
 	// when you disconnect from a tag, exit the program:
 	tag.on('disconnect', function() {
@@ -28,11 +48,13 @@ SensorTag.discover(function(tag) {
 
 	function connectAndSetUpMe() {			// attempt to connect to the tag
     	console.log('connectAndSetUp');
+    	
     	tag.connectAndSetUp(notifyMe);		// when you connect, call notifyMe
     }
 
 	function notifyMe() {
 		console.log('notifyMe');
+		run_cmd('say', ['-v', 'Samantha', 'Connected to tag ' + tag.type]);
  		tag.notifySimpleKey(listenForButton);		// start the button listener
    	}
 
